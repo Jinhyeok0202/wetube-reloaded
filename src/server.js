@@ -5,11 +5,13 @@ import video from "./routers/videoRouter";
 import user from "./routers/userRouter";
 
 const PORT = 4000;
-
+console.log(process.cwd());
 const app = express();
 const loggerMiddleware = morgan("dev");
-app.use(loggerMiddleware);
 
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");
+app.use(loggerMiddleware);
 app.use("/", global);
 app.use("/videos", video);
 app.use("/users", user);
