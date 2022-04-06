@@ -1,8 +1,9 @@
+import { render } from "express/lib/response";
 import Video from "../models/Videos";
 
 export const home = async (req, res) => {
-  const videos = await Video.find({});
-  console.log(videos);
+  const videos = await Video.find({}).sort({ createAt: "desc" });
+
   return res.render("home", { pageTitle: " Home", videos });
 };
 export const watch = async (req, res) => {
@@ -59,4 +60,16 @@ export const postUpload = async (req, res) => {
       errorMessage: error._message,
     });
   }
+};
+
+export const deleteVideo = async (req, res) => {
+  const { id } = req.params;
+  await Video.findByIdAndDelete(id);
+  return res.redirect("/");
+};
+
+export const search = (req, res) => {
+  const { keyword } = req.query;
+  console.log(keyword);
+  return res.render("search", { pageTitle: "Search" });
 };
