@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Yoonjinhyeok0202/wetube-reloaded#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.3",
     "mongodb": "^4.5.0",
     "mongoose": "^6.2.6",
